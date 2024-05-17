@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+     
+        let data = fetch("https://fakestoreapi.com/products")
+        
+              .then((e) => e.json())
+              .then((e) => {
+                let result = e;
+        
+                let container = document.createElement("div");
+                document.body.appendChild(container);
+                container.style.display = "flex"; 
+                container.style.flexWrap = "wrap"; 
+                container.style.backgroundColor="yellow"
+                container.style.justifyContent="center"
+        
+                for (i of result) {
+                  let div1 = document.createElement("div");
+                  div1.style.border="1px solid red"
+                  div1.style.borderRadius="30px"
+                  div1.style.alignItems="center"
+                  div1.style.width = "25%"; 
+                  div1.style.height = "200px";
+                  div1.style.boxShadow="5px 5px 10px 2px  black"
+                  div1.style.backgroundColor = "lightblue";
+                  div1.style.marginLeft = "10px";
+                  div1.style.marginTop="10px" 
+                  
+        
+                  let p1 = document.createElement("p");
+                  p1.style.fontSize = "15px"
+                  p1.style.fontStyle="Fantasy"
+                  p1.style.textAlign = "center";
+                  p1.style.fontWeight = "bold"; 
+                  div1.appendChild(p1);
+                  p1.innerHTML = i.title
+                     
+                  let photo=document.createElement("img")
+                  photo.src=i.image
+                  photo.style.height="100px"
+                  photo.style.width="100px"
+                  photo.style.marginLeft="35%"
+                  photo.style.marginTop="-10px"
+                  div1.appendChild(photo)
+        
+                  let p2 = document.createElement("p");
+                  p2.style.fontSize = "25%"
+                  p2.style.marginLeft="45%"
+                  p2.style.fontStyle="Fantasy"
+                  div1.appendChild(p2);
+                  p2.innerHTML =`<b>Price</b>:${ i.price}`;
+        
+                  
+        
+                  let p3 = document.createElement("p");
+                  p3.style.fontSize = "25%";
+                  p3.style.textAlign = "center";
+                  div1.appendChild(p3);
+                  p3.innerHTML = `<b>category</b> :${i.category}`;
+        
+                  let p4 = document.createElement("p");
+                  p4.style.fontSize = "25%";
+                  p4.style.textAlign = "center";
+                  div1.appendChild(p4);
+                  p4.innerHTML = `<b>Rating</b> :${i.rating.rate}`;
+                  container.appendChild(div1);
+                }
+              })
+          
+    </script>
+</body>
+</html>
